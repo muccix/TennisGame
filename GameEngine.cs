@@ -52,8 +52,11 @@ namespace TennisGame
 
         private void PrintCurrentScore()
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+
             System.Console.WriteLine($"{_playerA.Name} - {_playerA.Score}");
             System.Console.WriteLine($"{_playerB.Name} - {_playerB.Score}\n");
+            System.Console.ResetColor();
         }
     }
 }

@@ -9,7 +9,6 @@ namespace TennisGame
 
         public GameScoreManager(Player playerA, Player playerB)
         {
-            //TODO: change console color
             _playerA = playerA;
             _playerB = playerB;
         }
