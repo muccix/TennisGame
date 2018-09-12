@@ -31,7 +31,10 @@ namespace TennisGame
 
             while (true)
             {
-                // System.Console.ReadLine("Press any key to play the point...");
+                System.Console.WriteLine("Press any key to play the point...\n");
+                Console.ReadKey(true);
+                Console.Clear();
+
                 var player = _pointResultEngine.GetPointWinnerPlayer();
                 var pointWinnerName = player == Players.PlayerA ? _playerA.Name : _playerB.Name;
                 System.Console.WriteLine($"{pointWinnerName} won the point.\n");
@@ -44,7 +47,7 @@ namespace TennisGame
             }
 
             var gameWinnerName = gameWinner == Players.PlayerA ? _playerA.Name : _playerB.Name;
-            System.Console.WriteLine($"Game ended. {gameWinnerName} win the game!");
+            System.Console.WriteLine($"{gameWinnerName} wins the game!");
 
         }
 
@@ -52,11 +55,12 @@ namespace TennisGame
 
         private void PrintCurrentScore()
         {
+            System.Console.WriteLine("-----------------");       
             Console.ForegroundColor = ConsoleColor.Green;
-
             System.Console.WriteLine($"{_playerA.Name} - {_playerA.Score}");
-            System.Console.WriteLine($"{_playerB.Name} - {_playerB.Score}\n");
+            System.Console.WriteLine($"{_playerB.Name} - {_playerB.Score}");
             System.Console.ResetColor();
+            System.Console.WriteLine("-----------------\n");
         }
     }
 }
