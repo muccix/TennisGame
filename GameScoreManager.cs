@@ -9,6 +9,7 @@ namespace TennisGame
 
         public GameScoreManager(Player playerA, Player playerB)
         {
+            //TODO: change console color
             _playerA = playerA;
             _playerB = playerB;
         }
@@ -22,7 +23,11 @@ namespace TennisGame
                 {
                     _playerB.Score = Points.Forty;
                 }
-                _playerA.Score = (Points)((int)_playerA.Score + 1);
+                else
+                {
+                    _playerA.Score = (Points)((int)_playerA.Score + 1);
+
+                }
             }
             else
             {
@@ -31,7 +36,10 @@ namespace TennisGame
                 {
                     _playerA.Score = Points.Forty;
                 }
-                _playerB.Score = (Points)((int)_playerB.Score + 1);
+                else
+                {
+                    _playerB.Score = (Points)((int)_playerB.Score + 1);
+                }
             }
         }
 
@@ -41,8 +49,10 @@ namespace TennisGame
             if (winningPointPlayer == Players.PlayerA)
             {
                 // Player A made the point
-                if (_playerA.Score == Points.Forty &&
-                (_playerB.Score != Points.Forty || _playerB.Score != Points.Advantage))
+                if (_playerA.Score == Points.Advantage ||
+                    (_playerA.Score == Points.Forty &&
+                    _playerB.Score != Points.Forty &&
+                    _playerB.Score != Points.Advantage))
                 {
                     winner = Players.PlayerA;
                 }
@@ -50,8 +60,10 @@ namespace TennisGame
             else
             {
                 // Player B made the point
-                if (_playerB.Score == Points.Forty &&
-                (_playerA.Score != Points.Forty || _playerA.Score != Points.Advantage))
+                if (_playerB.Score == Points.Advantage ||
+                    (_playerB.Score == Points.Forty &&
+                    _playerA.Score != Points.Forty &&
+                    _playerA.Score != Points.Advantage))
                 {
                     winner = Players.PlayerB;
                 }
