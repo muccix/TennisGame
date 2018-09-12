@@ -44,7 +44,7 @@ namespace TennisGame
             }
 
             var gameWinnerName = gameWinner == Players.PlayerA ? _playerA.Name : _playerB.Name;
-            System.Console.WriteLine($"Game ended. {gameWinner} win the game!");
+            System.Console.WriteLine($"Game ended. {gameWinnerName} win the game!");
 
         }
 
