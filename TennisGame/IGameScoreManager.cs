@@ -4,8 +4,10 @@ namespace TennisGame
 {
     public interface IGameScoreManager
     {
-        void UpdateScore(Players winningPointPlayer);
+        void UpdateScore(Player playerA,
+                         Player playerB,
+                         Players winningPointPlayer);
 
-        Players CheckGameWinner();
+        Players CheckGameWinner(Player playerA, Player playerB);
     }
 }

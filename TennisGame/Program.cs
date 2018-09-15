@@ -9,7 +9,7 @@ namespace TennisGame
             var playerA = new Player(Players.A, "ROGER");
             var playerB = new Player(Players.B, "RAFA");
             var randomPointResultEngine = new RandomPointResultEngine();
-            var gameScoreManager = new GameScoreManager(playerA, playerB);
+            var gameScoreManager = new GameScoreManager();
             var consoleUserInterface = new ConsoleUserInterface();
 
             var gameEngine = new GameEngine(randomPointResultEngine,

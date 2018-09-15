@@ -16,41 +16,41 @@ namespace TennisGame.Tests
         {
             var playerA = new Player(Players.A, "ROGER");
             var playerB = new Player(Players.B, "RAFA");
-            var scoreManager = new GameScoreManager(playerA, playerB);
+            var scoreManager = new GameScoreManager();
 
-            scoreManager.UpdateScore(playerA.Id);
+            scoreManager.UpdateScore(playerA, playerB, playerA.Id);
             Assert.AreEqual(Points.Fifteen, playerA.Score);
 
-            scoreManager.UpdateScore(playerA.Id);
+            scoreManager.UpdateScore(playerA, playerB, playerA.Id);
             Assert.AreEqual(Points.Thirty, playerA.Score);
 
-            scoreManager.UpdateScore(playerA.Id);
+            scoreManager.UpdateScore(playerA, playerB, playerA.Id);
             Assert.AreEqual(Points.Forty, playerA.Score);
 
-            scoreManager.UpdateScore(playerB.Id);
+            scoreManager.UpdateScore(playerA, playerB, playerB.Id);
             Assert.AreEqual(Points.Fifteen, playerB.Score);
 
-            scoreManager.UpdateScore(playerB.Id);
+            scoreManager.UpdateScore(playerA, playerB, playerB.Id);
             Assert.AreEqual(Points.Forty, playerA.Score);
 
-            scoreManager.UpdateScore(playerB.Id);
+            scoreManager.UpdateScore(playerA, playerB, playerB.Id);
             Assert.AreEqual(Points.Forty, playerB.Score);
 
-            scoreManager.UpdateScore(playerA.Id);
+            scoreManager.UpdateScore(playerA, playerB, playerA.Id);
             Assert.AreEqual(Points.Forty, playerB.Score);
 
-            scoreManager.UpdateScore(playerB.Id);
+            scoreManager.UpdateScore(playerA, playerB, playerB.Id);
             Assert.AreEqual(Points.Forty, playerB.Score);
 
-            scoreManager.UpdateScore(playerB.Id);
+            scoreManager.UpdateScore(playerA, playerB, playerB.Id);
             Assert.AreEqual(Points.Advantage, playerB.Score);
 
-            scoreManager.UpdateScore(playerB.Id);
+            scoreManager.UpdateScore(playerA, playerB, playerB.Id);
             Assert.AreEqual(Points.Game, playerB.Score);
 
             playerB.Score = Points.Forty;
             playerA.Score = Points.Advantage;
-            scoreManager.UpdateScore(playerA.Id);
+            scoreManager.UpdateScore(playerA, playerB, playerA.Id);
             Assert.AreEqual(Points.Game, playerA.Score);
         }
 
@@ -59,106 +59,106 @@ namespace TennisGame.Tests
         {
             var playerA = new Player(Players.A, "ROGER");
             var playerB = new Player(Players.B, "RAFA");
-            var scoreManager = new GameScoreManager(playerA, playerB);
+            var scoreManager = new GameScoreManager();
 
             playerA.Score = Points.Fifteen;
             playerB.Score = Points.Love;
-            var winner = scoreManager.CheckGameWinner();
+            var winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(Players.None, winner);
 
             playerA.Score = Points.Thirty;
             playerB.Score = Points.Love;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(Players.None, winner);
 
             playerA.Score = Points.Forty;
             playerB.Score = Points.Love;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(Players.None, winner);
 
             playerA.Score = Points.Love;
             playerB.Score = Points.Fifteen;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(Players.None, winner);
 
             playerA.Score = Points.Love;
             playerB.Score = Points.Thirty;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(Players.None, winner);
 
             playerA.Score = Points.Love;
             playerB.Score = Points.Forty;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(Players.None, winner);
 
             playerA.Score = Points.Love;
             playerB.Score = Points.Love;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(Players.None, winner);
 
             playerA.Score = Points.Fifteen;
             playerB.Score = Points.Fifteen;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(Players.None, winner);
 
             playerA.Score = Points.Thirty;
             playerB.Score = Points.Thirty;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(Players.None, winner);
 
             playerA.Score = Points.Forty;
             playerB.Score = Points.Forty;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(Players.None, winner);
 
             playerA.Score = Points.Advantage;
             playerB.Score = Points.Forty;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(Players.None, winner);
 
             playerA.Score = Points.Forty;
             playerB.Score = Points.Advantage;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(Players.None, winner);
 
             playerA.Score = Points.Game;
             playerB.Score = Points.Love;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(playerA.Id, winner);
 
             playerA.Score = Points.Game;
             playerB.Score = Points.Fifteen;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(playerA.Id, winner);
 
             playerA.Score = Points.Game;
             playerB.Score = Points.Thirty;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(playerA.Id, winner);
 
             playerA.Score = Points.Game;
             playerB.Score = Points.Forty;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(playerA.Id, winner);
 
             playerA.Score = Points.Love;
             playerB.Score = Points.Game;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(playerB.Id, winner);
 
             playerA.Score = Points.Fifteen;
             playerB.Score = Points.Game;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(playerB.Id, winner);
 
             playerA.Score = Points.Thirty;
             playerB.Score = Points.Game;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(playerB.Id, winner);
 
             playerA.Score = Points.Forty;
             playerB.Score = Points.Game;
-            winner = scoreManager.CheckGameWinner();
+            winner = scoreManager.CheckGameWinner(playerA, playerB);
             Assert.AreEqual(playerB.Id, winner);
         }
     }

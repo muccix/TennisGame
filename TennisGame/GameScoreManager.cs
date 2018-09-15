@@ -4,63 +4,56 @@ namespace TennisGame
 {
     public class GameScoreManager : IGameScoreManager
     {
-        private Player _playerA = null;
-        private Player _playerB = null;
-
-        public GameScoreManager(Player playerA, Player playerB)
-        {
-            _playerA = playerA;
-            _playerB = playerB;
-        }
-
-        public void UpdateScore(Players winningPointPlayer)
+        public void UpdateScore(Player playerA,
+                                Player playerB,
+                                Players winningPointPlayer)
         {
             if (winningPointPlayer == Players.A)
             {
-                if (_playerA.Score >= Points.Forty && 
-                    (int)_playerA.Score - (int)_playerB.Score >= 1)
+                if (playerA.Score >= Points.Forty && 
+                    (int)playerA.Score - (int)playerB.Score >= 1)
                 {
-                    _playerA.Score = Points.Game;
+                    playerA.Score = Points.Game;
                     return;
                 }
 
-                if (_playerB.Score == Points.Advantage)
+                if (playerB.Score == Points.Advantage)
                 {
-                    _playerB.Score = Points.Forty;
+                    playerB.Score = Points.Forty;
                 }
                 else
                 {
-                    _playerA.Score = (Points)((int)_playerA.Score + 1);
+                    playerA.Score = (Points)((int)playerA.Score + 1);
                 }
             }
             else
             {
-                if (_playerB.Score >= Points.Forty &&
-                    (int)_playerB.Score - (int)_playerA.Score >= 1)
+                if (playerB.Score >= Points.Forty &&
+                    (int)playerB.Score - (int)playerA.Score >= 1)
                 {
-                    _playerB.Score = Points.Game;
+                    playerB.Score = Points.Game;
                     return;
                 }
 
-                if (_playerA.Score == Points.Advantage)
+                if (playerA.Score == Points.Advantage)
                 {
-                    _playerA.Score = Points.Forty;
+                    playerA.Score = Points.Forty;
                 }
                 else
                 {
-                    _playerB.Score = (Points)((int)_playerB.Score + 1);
+                    playerB.Score = (Points)((int)playerB.Score + 1);
                 }
             }
         }
 
-        public Players CheckGameWinner()
+        public Players CheckGameWinner(Player playerA, Player playerB)
         {
             Players winner = Players.None;
-            if (_playerA.Score == Points.Game)
+            if (playerA.Score == Points.Game)
             {
                 winner = Players.A;
             }
-            else if (_playerB.Score == Points.Game)
+            else if (playerB.Score == Points.Game)
             {
                 winner = Players.B;
             }

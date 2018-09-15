@@ -36,7 +36,7 @@ namespace TennisGame
             _playerB = playerB;
         }
 
-        public void PlayGame()
+        public Players PlayGame()
         {
             Players gameWinner = Players.None;
 
@@ -51,23 +51,24 @@ WELCOME TO THE TENNIS GAME!
             while (true)
             {
                 PrintCurrentScore();
+
                 _userInterface.SendMessage("Press any key to play the point...");
                 _userInterface.WaitUserAction();
                 _userInterface.Clear();
 
-                var player = _pointResultEngine.GetPointWinnerPlayer();
-                var pointWinnerName = player == Players.A ? _playerA.Name : _playerB.Name;
+                var pointWinnerPLayer = _pointResultEngine.GetPointWinnerPlayer();
+                var pointWinnerName = pointWinnerPLayer == Players.A ? _playerA.Name : _playerB.Name;
                 _userInterface.SendMessage($"\n{pointWinnerName} won the point.");
-                _gameScoreManager.UpdateScore(player);
-                gameWinner = _gameScoreManager.CheckGameWinner();
+
+                _gameScoreManager.UpdateScore(_playerA, _playerB, pointWinnerPLayer);
+                gameWinner = _gameScoreManager.CheckGameWinner(_playerA, _playerB);
                 if (gameWinner != Players.None)
                     break;
-
-                
             }
 
             var gameWinnerName = gameWinner == Players.A ? _playerA.Name : _playerB.Name;
             _userInterface.SendMessage($"{gameWinnerName} WINS THE GAME!!\n");
+            return gameWinner;
         }
 
         private void PrintCurrentScore()
