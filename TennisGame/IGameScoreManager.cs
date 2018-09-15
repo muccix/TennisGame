@@ -6,6 +6,6 @@ namespace TennisGame
     {
         void UpdateScore(Players winningPointPlayer);
 
-        Players CheckGameWinner(Players winningPointPlayer);
+        Players CheckGameWinner();
     }
 }
