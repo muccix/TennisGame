@@ -43,10 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleUserInterface.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="GameScoreManager.cs" />
     <Compile Include="IGameScoreManager.cs" />
     <Compile Include="IPointResultEngine.cs" />
+    <Compile Include="IUserInterface.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayersEnum.cs" />
     <Compile Include="PointsEnum.cs" />
