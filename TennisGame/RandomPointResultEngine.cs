@@ -7,7 +7,7 @@ namespace TennisGame
         public Players GetPointWinnerPlayer()
         {
             var random = new Random();
-            var player = random.Next(0, 2) == 0 ? Players.PlayerA : Players.PlayerB;
+            var player = random.Next(0, 2) == 0 ? Players.A : Players.B;
             return player;
         }
     }

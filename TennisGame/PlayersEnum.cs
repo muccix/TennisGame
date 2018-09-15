@@ -4,8 +4,8 @@ namespace TennisGame
 {
     public enum Players
     {
-        PlayerA,
-        PlayerB,
+        A,
+        B,
         None
     }
 }

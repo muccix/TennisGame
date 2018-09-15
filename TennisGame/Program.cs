@@ -6,8 +6,8 @@ namespace TennisGame
     {
         static void Main(string[] args)
         {
-            var playerA = new Player(Players.PlayerA, "ROGER");
-            var playerB = new Player(Players.PlayerB, "RAFA");
+            var playerA = new Player(Players.A, "ROGER");
+            var playerB = new Player(Players.B, "RAFA");
             var randomPointResultEngine = new RandomPointResultEngine();
             var gameScoreManager = new GameScoreManager(playerA, playerB);
             var consoleUserInterface = new ConsoleUserInterface();
