@@ -11,12 +11,24 @@ namespace TennisGame
         private Player _playerA = null;
         private Player _playerB = null;
 
-        public GameEngine(IPointResultEngine pointResultEngine,
+        public GameEngine(IPointResultEngine pointResultEngine, 
                             IGameScoreManager gameScoreManager,
                             IUserInterface userInterface,
                             Player playerA,
                             Player playerB)
         {
+            if (pointResultEngine == null)
+                throw new ArgumentNullException("PointResultEngine");
+
+            if (gameScoreManager == null)
+                throw new ArgumentNullException("GameScoreManager");
+
+            if (playerA == null)
+                throw new ArgumentNullException("PlayerA");
+
+            if (playerB == null)
+                throw new ArgumentNullException("PlayerB");
+
             _pointResultEngine = pointResultEngine;
             _gameScoreManager = gameScoreManager;
             _userInterface = userInterface;
@@ -27,11 +39,6 @@ namespace TennisGame
         public void PlayGame()
         {
             Players gameWinner = Players.None;
-            if (_pointResultEngine == null)
-                throw new ArgumentNullException("PointResultEngine is missing");
-
-            if (_gameScoreManager == null)
-                throw new ArgumentNullException("GameScoreManager is missing");
 
             _userInterface.Clear();
             string message = $@"
@@ -41,26 +48,25 @@ WELCOME TO THE TENNIS GAME!
 *****************************";
 
             _userInterface.SendMessage(message);
-            PrintCurrentScore();
             while (true)
             {
+                PrintCurrentScore();
                 _userInterface.SendMessage("Press any key to play the point...");
                 _userInterface.WaitUserAction();
                 _userInterface.Clear();
 
                 var player = _pointResultEngine.GetPointWinnerPlayer();
-                var pointWinnerName = player == Players.PlayerA ? _playerA.Name : _playerB.Name;
+                var pointWinnerName = player == Players.A ? _playerA.Name : _playerB.Name;
                 _userInterface.SendMessage($"\n{pointWinnerName} won the point.");
-
-                gameWinner = _gameScoreManager.CheckGameWinner(player);
+                _gameScoreManager.UpdateScore(player);
+                gameWinner = _gameScoreManager.CheckGameWinner();
                 if (gameWinner != Players.None)
                     break;
 
-                _gameScoreManager.UpdateScore(player);
-                PrintCurrentScore();
+                
             }
 
-            var gameWinnerName = gameWinner == Players.PlayerA ? _playerA.Name : _playerB.Name;
+            var gameWinnerName = gameWinner == Players.A ? _playerA.Name : _playerB.Name;
             _userInterface.SendMessage($"{gameWinnerName} WINS THE GAME!!\n");
         }
 
