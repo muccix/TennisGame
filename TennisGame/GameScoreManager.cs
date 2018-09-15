@@ -17,7 +17,6 @@ namespace TennisGame
         {
             if (winningPointPlayer == Players.PlayerA)
             {
-                // Player A made the point
                 if (_playerB.Score == Points.Advantage)
                 {
                     _playerB.Score = Points.Forty;
@@ -25,12 +24,10 @@ namespace TennisGame
                 else
                 {
                     _playerA.Score = (Points)((int)_playerA.Score + 1);
-
                 }
             }
             else
             {
-                // Player B made the point
                 if (_playerA.Score == Points.Advantage)
                 {
                     _playerA.Score = Points.Forty;
@@ -47,30 +44,44 @@ namespace TennisGame
             Players winner = Players.None;
             if (winningPointPlayer == Players.PlayerA)
             {
-                // Player A made the point
-                if (_playerA.Score == Points.Advantage ||
-                    (_playerA.Score == Points.Forty &&
-                    _playerB.Score != Points.Forty &&
-                    _playerB.Score != Points.Advantage))
+                if (isWinnerPlayerA())
                 {
                     winner = Players.PlayerA;
                 }
             }
             else
             {
-                // Player B made the point
-                if (_playerB.Score == Points.Advantage ||
-                    (_playerB.Score == Points.Forty &&
-                    _playerA.Score != Points.Forty &&
-                    _playerA.Score != Points.Advantage))
+                if (isWinnerPlayerB())
                 {
                     winner = Players.PlayerB;
                 }
             }
+
             return winner;
         }
 
+        private bool isWinnerPlayerA()
+        {
+            bool result = false;
+            if (_playerA.Score == Points.Advantage ||
+                (_playerA.Score == Points.Forty && (int)_playerB.Score < (int)Points.Forty))
+            {
+                result = true;
+            }
 
+            return result;
+        }
 
+        private bool isWinnerPlayerB()
+        {
+            bool result = false;
+            if (_playerB.Score == Points.Advantage ||
+                (_playerB.Score == Points.Forty && (int)_playerA.Score < (int)Points.Forty))
+            {
+                result = true;
+            }
+
+            return result;
+        }
     }
 }

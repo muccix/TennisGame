@@ -4,12 +4,11 @@ namespace TennisGame
 {
     public class Player
     {
-        public Players Id { get; set; }
+        public Players Id { get; private set; }
 
         public string Name { get; set; }
 
         public Points Score { get; set; }
-
 
         public Player(Players id, string name)
         {
