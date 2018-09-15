@@ -8,6 +8,7 @@ namespace TennisGame
         Fifteen,
         Thirty,
         Forty,
-        Advantage
+        Advantage,
+        Game
     }
 }
