@@ -15,8 +15,8 @@ namespace TennisGame.Tests
         [ExpectedException(typeof(ArgumentNullException), "PointResultEngine")]
         public void GameEngine_PointResultEngineIsNull_ThrowException()
         {
-            var playerA = new Player(Players.A, "ROGER");
-            var playerB = new Player(Players.B, "RAFA");
+            var playerA = new Player("ROGER");
+            var playerB = new Player("RAFA");
             RandomPointResultEngine randomPointResultEngine = null;
             var gameScoreManager = new GameScoreManager();
             var consoleUserInterface = new ConsoleUserInterface();
@@ -32,8 +32,8 @@ namespace TennisGame.Tests
         [ExpectedException(typeof(ArgumentNullException), "GameScoreManager")]
         public void GameEngine_GameScoreManagerIsNull_ThrowException()
         {
-            var playerA = new Player(Players.A, "ROGER");
-            var playerB = new Player(Players.B, "RAFA");
+            var playerA = new Player("ROGER");
+            var playerB = new Player("RAFA");
             var randomPointResultEngine = new RandomPointResultEngine();
             GameScoreManager gameScoreManager = null;
             var consoleUserInterface = new ConsoleUserInterface();
@@ -51,7 +51,7 @@ namespace TennisGame.Tests
         public void GameEngine_PlayerAIsNull_ThrowException()
         {
             Player playerA = null;
-            var playerB = new Player(Players.B, "RAFA");
+            var playerB = new Player("RAFA");
             var randomPointResultEngine = new RandomPointResultEngine();
             var gameScoreManager = new GameScoreManager();
             var consoleUserInterface = new ConsoleUserInterface();
@@ -67,7 +67,7 @@ namespace TennisGame.Tests
         [ExpectedException(typeof(ArgumentNullException), "PlayerB")]
         public void GameEngine_PlayerBIsNull_ThrowException()
         {
-            var playerA = new Player(Players.A, "ROGER");
+            var playerA = new Player("ROGER");
             Player playerB = null;
             var randomPointResultEngine = new RandomPointResultEngine();
             var gameScoreManager = new GameScoreManager();
@@ -83,8 +83,8 @@ namespace TennisGame.Tests
         [TestMethod]
         public void PlayGame_PlayerAAlwaysWinThePoint_PlayerAWinsTheGame()
         {
-            var playerA = new Player(Players.A, "ROGER");
-            var playerB = new Player(Players.B, "RAFA");
+            var playerA = new Player("ROGER");
+            var playerB = new Player("RAFA");
             var randomPointResultEngine = new Fake_PlayerAAlwaysWinResultEngine();
             var gameScoreManager = new GameScoreManager();
             var consoleUserInterface = new Fake_UserInterface();
@@ -102,8 +102,8 @@ namespace TennisGame.Tests
     [TestMethod]
     public void PlayGame_PlayerBAlwaysWinThePoint_PlayerBWinsTheGame()
     {
-        var playerA = new Player(Players.A, "ROGER");
-        var playerB = new Player(Players.B, "RAFA");
+        var playerA = new Player("ROGER");
+        var playerB = new Player("RAFA");
         var randomPointResultEngine = new Fake_PlayerBAlwaysWinResultEngine();
         var gameScoreManager = new GameScoreManager();
         var consoleUserInterface = new Fake_UserInterface();

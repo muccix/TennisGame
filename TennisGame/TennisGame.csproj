@@ -50,6 +50,7 @@
     <Compile Include="IPointResultEngine.cs" />
     <Compile Include="IUserInterface.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerIdManager.cs" />
     <Compile Include="PlayersEnum.cs" />
     <Compile Include="PointsEnum.cs" />
     <Compile Include="Program.cs" />

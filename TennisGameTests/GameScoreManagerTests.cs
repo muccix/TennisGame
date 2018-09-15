@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace TennisGame.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class GameScoreManagerTests
     {
         [TestMethod]
         public void UpdateScore_PlayerMakesPoint_PlayerScoreIncrease()
         {
-            var playerA = new Player(Players.A, "ROGER");
-            var playerB = new Player(Players.B, "RAFA");
+            var playerA = new Player("ROGER");
+            var playerB = new Player("RAFA");
             var scoreManager = new GameScoreManager();
 
             scoreManager.UpdateScore(playerA, playerB, playerA.Id);
@@ -57,8 +57,8 @@ namespace TennisGame.Tests
         [TestMethod]
         public void CheckGameWinner_PlayerMakesPoint_PlayersWinsTheGame()
         {
-            var playerA = new Player(Players.A, "ROGER");
-            var playerB = new Player(Players.B, "RAFA");
+            var playerA = new Player("ROGER");
+            var playerB = new Player("RAFA");
             var scoreManager = new GameScoreManager();
 
             playerA.Score = Points.Fifteen;
