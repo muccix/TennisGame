@@ -18,15 +18,67 @@ namespace TennisGame.Tests
         }
 
         [TestMethod()]
-        public void UpdateScoreTest()
+        public void UpdateScore_PlayerMakesPoint_PlayerScoreIncrease()
         {
-            Assert.Fail();
+            var playerA = new Player(Players.PlayerA, "ROGER");
+            var playerB = new Player(Players.PlayerB, "RAFA");
+            var scoreManager = new GameScoreManager(playerA, playerB);
+
+            scoreManager.UpdateScore(playerA.Id);
+            Assert.AreEqual(Points.Fifteen, playerA.Score);
+            Assert.AreEqual(Points.Love, playerB.Score);
+
+            scoreManager.UpdateScore(playerA.Id);
+            Assert.AreEqual(Points.Thirty, playerA.Score);
+            Assert.AreEqual(Points.Love, playerB.Score);
+
+            scoreManager.UpdateScore(playerA.Id);
+            Assert.AreEqual(Points.Forty, playerA.Score);
+            Assert.AreEqual(Points.Love, playerB.Score);
+
+
+            scoreManager.UpdateScore(playerB.Id);
+            Assert.AreEqual(Points.Forty, playerA.Score);
+            Assert.AreEqual(Points.Fifteen, playerB.Score);
+
+            scoreManager.UpdateScore(playerB.Id);
+            Assert.AreEqual(Points.Forty, playerA.Score);
+            Assert.AreEqual(playerB.Score, Points.Thirty);
+
+            scoreManager.UpdateScore(playerB.Id);
+            Assert.AreEqual(Points.Forty, playerA.Score);
+            Assert.AreEqual(Points.Forty, playerB.Score);
+
+            scoreManager.UpdateScore(playerA.Id);
+            Assert.AreEqual(Points.Advantage, playerA.Score);
+            Assert.AreEqual(Points.Forty, playerB.Score);
+
+            scoreManager.UpdateScore(playerB.Id);
+            Assert.AreEqual(Points.Forty, playerA.Score);
+            Assert.AreEqual(Points.Forty, playerB.Score);
+
+            scoreManager.UpdateScore(playerB.Id);
+            Assert.AreEqual(Points.Forty, playerA.Score);
+            Assert.AreEqual(Points.Advantage, playerB.Score);
         }
 
         [TestMethod()]
-        public void CheckGameWinnerTest()
+        public void CheckGameWinner_PlayerMakesPoint_PlayersWinsTheGame()
         {
-            Assert.Fail();
+            //var playerA = new Player(Players.PlayerA, "ROGER");
+            //var playerB = new Player(Players.PlayerB, "RAFA");
+            //var scoreManager = new GameScoreManager(playerA, playerB);
+
+            //playerA.Score = Points.Fifteen;
+            //playerB.Score = Points.Love;
+            //var winner = scoreManager.CheckGameWinner(playerA.Id);
+            //Assert.AreEqual(Players.None, winner);
+
+            //playerA.Score = Points.Thirty;
+            //playerB.Score = Points.Love;
+            //winner = scoreManager.CheckGameWinner(playerA.Id);
+            //Assert.AreEqual(Players.None, winner);
+
         }
     }
 }
