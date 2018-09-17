@@ -10,8 +10,8 @@ namespace TennisGame
 
         public Player(string name)
         {
-            if (String.IsNullOrEmpty(name))
-                throw new ArgumentException("Players name can not be empty or null");
+            if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Players name can not be empty, null or white spaces only");
             Name = name;
         }
 

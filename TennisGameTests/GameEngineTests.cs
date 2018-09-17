@@ -12,6 +12,23 @@ namespace TennisGame.Tests
     public class GameEngineTests
     {
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), "Players can't have the same name")]
+        public void GameEngine_PlayersWithSameName_ThrowException()
+        {
+            var playerA = new Player("ROGER");
+            var playerB = new Player("ROGER");
+            RandomPointResultEngine randomPointResultEngine = null;
+            var gameScoreManager = new GameScoreManager();
+            var consoleUserInterface = new ConsoleUserInterface();
+
+            var gameEngine = new GameEngine(randomPointResultEngine,
+                                gameScoreManager,
+                                consoleUserInterface,
+                                playerA,
+                                playerB);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "PointResultEngine")]
         public void GameEngine_PointResultEngineIsNull_ThrowException()
         {
@@ -96,7 +113,7 @@ namespace TennisGame.Tests
                                 playerB);
 
             var winner = gameEngine.PlayGame();
-            Assert.AreEqual(Players.A, winner);
+            Assert.AreEqual(playerA.Name, winner);
         }
 
     [TestMethod]
@@ -115,23 +132,23 @@ namespace TennisGame.Tests
                             playerB);
 
         var winner = gameEngine.PlayGame();
-        Assert.AreEqual(Players.B, winner);
+        Assert.AreEqual(playerB.Name, winner);
     }
 }
 
 public class Fake_PlayerAAlwaysWinResultEngine : IPointResultEngine
     {
-        public Players GetPointWinnerPlayer()
+        public string GetPointWinnerPlayerName(Player playerA, Player playerB)
         {
-            return Players.A;
+            return playerA.Name;
         }
     }
 
     public class Fake_PlayerBAlwaysWinResultEngine : IPointResultEngine
     {
-        public Players GetPointWinnerPlayer()
+        public string GetPointWinnerPlayerName(Player playerA, Player playerB)
         {
-            return Players.B;
+            return playerB.Name;
         }
     }
 
@@ -140,7 +157,6 @@ public class Fake_PlayerAAlwaysWinResultEngine : IPointResultEngine
         public void SendMessage(string message)
         {
             Console.WriteLine(message);
-            ;
         }
 
         public void Clear()
@@ -149,6 +165,26 @@ public class Fake_PlayerAAlwaysWinResultEngine : IPointResultEngine
         }
 
         public void WaitUserAction()
+        {
+            return;
+        }
+
+        public void PrintWelcome(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        public void PrintMessage(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        public void PrintScore(string score)
+        {
+            Console.WriteLine(score);
+        }
+
+        public void ClearPage()
         {
             return;
         }

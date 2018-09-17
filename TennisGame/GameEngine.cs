@@ -8,8 +8,8 @@ namespace TennisGame
         private readonly IGameScoreManager _gameScoreManager;
 
         private readonly IUserInterface _userInterface;
-        private Player _playerA = null;
-        private Player _playerB = null;
+        private readonly Player _playerA;
+        private readonly Player _playerB;
 
         public GameEngine(IPointResultEngine pointResultEngine,
                             IGameScoreManager gameScoreManager,
@@ -18,16 +18,16 @@ namespace TennisGame
                             Player playerB)
         {
             if (pointResultEngine == null)
-                throw new ArgumentNullException("PointResultEngine");
+                throw new ArgumentNullException("pointResultEngine");
 
             if (gameScoreManager == null)
-                throw new ArgumentNullException("GameScoreManager");
+                throw new ArgumentNullException("gameScoreManager");
 
             if (playerA == null)
-                throw new ArgumentNullException("PlayerA");
+                throw new ArgumentNullException("playerA");
 
             if (playerB == null)
-                throw new ArgumentNullException("PlayerB");
+                throw new ArgumentNullException("playerB");
 
             if (playerA.Name == playerB.Name)
                 throw new ArgumentException("Players can't have the same name");
@@ -55,7 +55,7 @@ namespace TennisGame
                 _userInterface.WaitUserAction();
                 _userInterface.ClearPage();
 
-                string pointWinnerPlayerName = _pointResultEngine.GetPointWinnerPlayerName(_playerA.Name, _playerB.Name);
+                string pointWinnerPlayerName = _pointResultEngine.GetPointWinnerPlayerName(_playerA, _playerB);
                 _userInterface.PrintMessage($"\n{pointWinnerPlayerName} won the point.");
 
                 _gameScoreManager.UpdateScore(_playerA, _playerB, pointWinnerPlayerName);
