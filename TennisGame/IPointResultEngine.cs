@@ -4,6 +4,6 @@ namespace TennisGame
 {
     public interface IPointResultEngine
     {
-        string GetPointWinnerPlayerName(string playerAName, string playerBName);
+        string GetPointWinnerPlayerName(Player playerA, Player playerB);
     }
 }

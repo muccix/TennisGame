@@ -6,9 +6,9 @@ namespace TennisGame
     {
         public void UpdateScore(Player playerA,
                                 Player playerB,
-                                string winningPointPlayer)
+                                string winningPointPlayerName)
         {
-            if (winningPointPlayer == playerA.Name)
+            if (winningPointPlayerName == playerA.Name)
             {
                 if (playerA.Score >= Points.Forty && 
                     (int)playerA.Score - (int)playerB.Score >= 1)
