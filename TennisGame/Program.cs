@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TennisGame
+﻿namespace TennisGame
 {
     class Program
     {
