@@ -6,9 +6,9 @@ namespace TennisGame
     {
         public void UpdateScore(Player playerA,
                                 Player playerB,
-                                Players winningPointPlayer)
+                                string winningPointPlayer)
         {
-            if (winningPointPlayer == Players.A)
+            if (winningPointPlayer == playerA.Name)
             {
                 if (playerA.Score >= Points.Forty && 
                     (int)playerA.Score - (int)playerB.Score >= 1)
@@ -46,16 +46,16 @@ namespace TennisGame
             }
         }
 
-        public Players CheckGameWinner(Player playerA, Player playerB)
+        public string GetGameWinnerName(Player playerA, Player playerB)
         {
-            Players winner = Players.None;
+            string winner = "";
             if (playerA.Score == Points.Game)
             {
-                winner = Players.A;
+                winner = playerA.Name;
             }
             else if (playerB.Score == Points.Game)
             {
-                winner = Players.B;
+                winner = playerB.Name;
             }
 
             return winner;

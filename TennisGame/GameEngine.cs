@@ -11,7 +11,7 @@ namespace TennisGame
         private Player _playerA = null;
         private Player _playerB = null;
 
-        public GameEngine(IPointResultEngine pointResultEngine, 
+        public GameEngine(IPointResultEngine pointResultEngine,
                             IGameScoreManager gameScoreManager,
                             IUserInterface userInterface,
                             Player playerA,
@@ -29,6 +29,9 @@ namespace TennisGame
             if (playerB == null)
                 throw new ArgumentNullException("PlayerB");
 
+            if (playerA.Name == playerB.Name)
+                throw new ArgumentException("Players can't have the same name");
+
             _pointResultEngine = pointResultEngine;
             _gameScoreManager = gameScoreManager;
             _userInterface = userInterface;
@@ -36,62 +39,52 @@ namespace TennisGame
             _playerB = playerB;
         }
 
-        public Players PlayGame()
+        public string PlayGame()
         {
-            Players gameWinner = Players.None;
+            string gameWinnerName = "";
 
-            _userInterface.Clear();
-            string message = $@"
-*****************************
-WELCOME TO THE TENNIS GAME!
-{_playerA.Name} vs {_playerB.Name}: who is going to win this game?
-*****************************";
+            _userInterface.ClearPage();
+            string message = $"WELCOME TO THE TENNIS GAME!\n{_playerA.Name} vs {_playerB.Name}: who is going to win this game?";
 
-            _userInterface.SendMessage(message);
+            _userInterface.PrintWelcome(message);
             while (true)
             {
                 PrintCurrentScore();
 
-                _userInterface.SendMessage("Press any key to play the point...");
+                _userInterface.PrintMessage("Press any key to play the point...");
                 _userInterface.WaitUserAction();
-                _userInterface.Clear();
+                _userInterface.ClearPage();
 
-                var pointWinnerPLayer = _pointResultEngine.GetPointWinnerPlayer();
-                var pointWinnerName = pointWinnerPLayer == Players.A ? _playerA.Name : _playerB.Name;
-                _userInterface.SendMessage($"\n{pointWinnerName} won the point.");
+                string pointWinnerPlayerName = _pointResultEngine.GetPointWinnerPlayerName(_playerA.Name, _playerB.Name);
+                _userInterface.PrintMessage($"\n{pointWinnerPlayerName} won the point.");
 
-                _gameScoreManager.UpdateScore(_playerA, _playerB, pointWinnerPLayer);
-                gameWinner = _gameScoreManager.CheckGameWinner(_playerA, _playerB);
-                if (gameWinner != Players.None)
+                _gameScoreManager.UpdateScore(_playerA, _playerB, pointWinnerPlayerName);
+                gameWinnerName = _gameScoreManager.GetGameWinnerName(_playerA, _playerB);
+                if (gameWinnerName != "")
                     break;
             }
 
-            var gameWinnerName = gameWinner == Players.A ? _playerA.Name : _playerB.Name;
-            _userInterface.SendMessage($"{gameWinnerName} WINS THE GAME!!\n");
-            return gameWinner;
+            _userInterface.PrintMessage($"{gameWinnerName} WINS THE GAME!!\n");
+            return gameWinnerName;
         }
 
         private void PrintCurrentScore()
         {
             if (_playerA.Score == Points.Forty && _playerB.Score == Points.Forty)
             {
-                _userInterface.SendMessage("DEUCE!");
+                _userInterface.PrintMessage("DEUCE!");
             }
             else if (_playerA.Score == Points.Advantage)
             {
-                _userInterface.SendMessage($"ADVANTAGE {_playerA.Name}!");
+                _userInterface.PrintMessage($"ADVANTAGE {_playerA.Name}!");
             }
             else if (_playerB.Score == Points.Advantage)
             {
-                _userInterface.SendMessage($"ADVANTAGE {_playerB.Name}!");
+                _userInterface.PrintMessage($"ADVANTAGE {_playerB.Name}!");
             }
 
-            string message = $@"
------------------
-{_playerA.Name} - {_playerA.Score}
-{_playerB.Name} - {_playerB.Score}
------------------";
-            _userInterface.SendMessage(message);
+            string scoreMessage = $"{_playerA.Name} - {_playerA.Score}\n{_playerB.Name} - {_playerB.Score}";
+            _userInterface.PrintScore(scoreMessage);
         }
     }
 }

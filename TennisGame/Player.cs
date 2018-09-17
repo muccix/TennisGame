@@ -4,15 +4,14 @@ namespace TennisGame
 {
     public class Player
     {
-        public Players Id  { get; set; }
-
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         public Points Score { get; set; }
 
         public Player(string name)
         {
-            Id = PlayerIdManager.GetPlayerId();
+            if (String.IsNullOrEmpty(name))
+                throw new ArgumentException("Players name can not be empty or null");
             Name = name;
         }
 

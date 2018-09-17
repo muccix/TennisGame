@@ -4,11 +4,10 @@ namespace TennisGame
 {
     public class RandomPointResultEngine : IPointResultEngine
     {
-        public Players GetPointWinnerPlayer()
+        public string GetPointWinnerPlayerName(string playerAName, string playerBName)
         {
             var random = new Random();
-            var player = random.Next(0, 2) == 0 ? Players.A : Players.B;
-            return player;
+            return random.Next(0, 2) == 0 ? playerAName : playerBName;
         }
     }
 }

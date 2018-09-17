@@ -6,8 +6,8 @@ namespace TennisGame
     {
         void UpdateScore(Player playerA,
                          Player playerB,
-                         Players winningPointPlayer);
+                         string winningPointPlayer);
 
-        Players CheckGameWinner(Player playerA, Player playerB);
+        string GetGameWinnerName(Player playerA, Player playerB);
     }
 }
