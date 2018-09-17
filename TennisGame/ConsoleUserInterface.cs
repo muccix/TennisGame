@@ -4,12 +4,12 @@ namespace TennisGame
 {
     public class ConsoleUserInterface : IUserInterface
     {
-        public void SendMessage(string message)
+        public void PrintMessage(string message)
         {
             Console.WriteLine(message);
         }
 
-        public void Clear()
+        public void ClearPage()
         {
             Console.Clear();
         }
@@ -17,6 +17,24 @@ namespace TennisGame
         public void WaitUserAction()
         {
             Console.ReadKey(true);
+        }
+
+        public void PrintWelcome(string message)
+        {
+            Console.WriteLine(
+            $@"
+*****************************
+{message}
+*****************************");
+        }
+
+        public void PrintScore(string score)
+        {
+            Console.WriteLine(
+                $@"
+-----------------
+{score}
+-----------------");
         }
     }
 }

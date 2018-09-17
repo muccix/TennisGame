@@ -1,14 +1,15 @@
-using System;
-
 namespace TennisGame
 {
     public interface IUserInterface
     {
-        void SendMessage(string message);
+        void PrintWelcome(string message);
 
-        void Clear();
+        void PrintMessage(string message);
+
+        void PrintScore(string score);
+
+        void ClearPage();
 
         void WaitUserAction();
-
     }
 }
