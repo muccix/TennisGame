@@ -179,9 +179,17 @@ public class Fake_PlayerAAlwaysWinResultEngine : IPointResultEngine
             Console.WriteLine(message);
         }
 
-        public void PrintScore(string score)
+        public void PrintScore(string playerAName,
+                               Points playerAScore,
+                               string playerBName,
+                               Points playerBScore)
         {
-            Console.WriteLine(score);
+            Console.WriteLine(
+                $@"
+-----------------
+{playerAName} - {playerAScore}
+{playerBName} - {playerBScore}
+-----------------");
         }
 
         public void ClearPage()

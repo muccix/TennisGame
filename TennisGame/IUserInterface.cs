@@ -6,7 +6,10 @@ namespace TennisGame
 
         void PrintMessage(string message);
 
-        void PrintScore(string score);
+        void PrintScore(string playerAName,
+                        Points playerAScore,
+                        string playerBName,
+                        Points playerBScore);
 
         void ClearPage();
 

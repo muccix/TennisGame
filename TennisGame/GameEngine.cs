@@ -84,7 +84,7 @@ namespace TennisGame
             }
 
             string scoreMessage = $"{_playerA.Name} - {_playerA.Score}\n{_playerB.Name} - {_playerB.Score}";
-            _userInterface.PrintScore(scoreMessage);
+            _userInterface.PrintScore(_playerA.Name, _playerA.Score, _playerB.Name, _playerB.Score);
         }
     }
 }

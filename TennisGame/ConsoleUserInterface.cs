@@ -28,12 +28,16 @@ namespace TennisGame
 *****************************");
         }
 
-        public void PrintScore(string score)
+        public void PrintScore(string playerAName,
+                               Points playerAScore,
+                               string playerBName,
+                               Points playerBScore)
         {
             Console.WriteLine(
                 $@"
 -----------------
-{score}
+{playerAName} - {playerAScore}
+{playerBName} - {playerBScore}
 -----------------");
         }
     }
