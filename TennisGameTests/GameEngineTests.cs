@@ -169,17 +169,17 @@ public class Fake_PlayerAAlwaysWinResultEngine : IPointResultEngine
             return;
         }
 
-        public void PrintWelcome(string message)
+        public void ShowStrongMessage(string message)
         {
             Console.WriteLine(message);
         }
 
-        public void PrintMessage(string message)
+        public void ShowMessage(string message)
         {
             Console.WriteLine(message);
         }
 
-        public void PrintScore(string playerAName,
+        public void ShowScore(string playerAName,
                                Points playerAScore,
                                string playerBName,
                                Points playerBScore)

@@ -4,7 +4,7 @@ namespace TennisGame
 {
     public class ConsoleUserInterface : IUserInterface
     {
-        public void PrintMessage(string message)
+        public void ShowMessage(string message)
         {
             Console.WriteLine(message);
         }
@@ -19,7 +19,7 @@ namespace TennisGame
             Console.ReadKey(true);
         }
 
-        public void PrintWelcome(string message)
+        public void ShowStrongMessage(string message)
         {
             Console.WriteLine(
             $@"
@@ -28,7 +28,7 @@ namespace TennisGame
 *****************************");
         }
 
-        public void PrintScore(string playerAName,
+        public void ShowScore(string playerAName,
                                Points playerAScore,
                                string playerBName,
                                Points playerBScore)

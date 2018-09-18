@@ -2,11 +2,11 @@ namespace TennisGame
 {
     public interface IUserInterface
     {
-        void PrintWelcome(string message);
+        void ShowStrongMessage(string message);
 
-        void PrintMessage(string message);
+        void ShowMessage(string message);
 
-        void PrintScore(string playerAName,
+        void ShowScore(string playerAName,
                         Points playerAScore,
                         string playerBName,
                         Points playerBScore);
