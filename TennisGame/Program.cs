@@ -6,8 +6,8 @@
         {
             try
             {
-                var playerA = new Player("");
-                var playerB = new Player("ROGER");
+                var playerA = new Player("ROGER");
+                var playerB = new Player("RAFA");
                 var randomPointResultEngine = new RandomPointResultEngine();
                 var gameScoreManager = new GameScoreManager();
                 var consoleUserInterface = new ConsoleUserInterface();
