@@ -15,38 +15,25 @@ namespace TennisGame
                             IGameScoreManager gameScoreManager,
                             IUserInterface userInterface,
                             Player playerA,
-                            Player playerB)
+                            Player _playerB)
         {
-            if (pointResultEngine == null)
-                throw new ArgumentNullException("pointResultEngine");
+            _playerA = playerA ?? throw new ArgumentNullException("playerA");
+            this._playerB = _playerB ?? throw new ArgumentNullException("playerB");
+            _pointResultEngine = pointResultEngine ?? throw new ArgumentNullException("pointResultEngine");
+            _gameScoreManager = gameScoreManager ?? throw new ArgumentNullException("gameScoreManager");
+            _userInterface = userInterface ?? throw new ArgumentNullException("userInterface");
 
-            if (gameScoreManager == null)
-                throw new ArgumentNullException("gameScoreManager");
-
-            if (playerA == null)
-                throw new ArgumentNullException("playerA");
-
-            if (playerB == null)
-                throw new ArgumentNullException("playerB");
-
-            if (playerA.Name == playerB.Name)
+            if (_playerA.Name == _playerB.Name)
                 throw new ArgumentException("Players can't have the same name");
-
-            _pointResultEngine = pointResultEngine;
-            _gameScoreManager = gameScoreManager;
-            _userInterface = userInterface;
-            _playerA = playerA;
-            _playerB = playerB;
         }
 
         public string PlayGame()
         {
-            string gameWinnerName = "";
-
             _userInterface.ClearPage();
             string message = $"WELCOME TO THE TENNIS GAME!\n{_playerA.Name} vs {_playerB.Name}: who is going to win this game?";
 
             _userInterface.ShowStrongMessage(message);
+            string gameWinnerName = "";
             while (true)
             {
                 PrintCurrentScore();

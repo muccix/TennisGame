@@ -12,12 +12,12 @@ namespace TennisGame.Tests
     public class GameEngineTests
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "Players can't have the same name")]
+        [ExpectedException(typeof(ArgumentException), "Players can't have the same name")]
         public void GameEngine_PlayersWithSameName_ThrowException()
         {
             var playerA = new Player("ROGER");
             var playerB = new Player("ROGER");
-            RandomPointResultEngine randomPointResultEngine = null;
+            RandomPointResultEngine randomPointResultEngine = new RandomPointResultEngine();
             var gameScoreManager = new GameScoreManager();
             var consoleUserInterface = new ConsoleUserInterface();
 
