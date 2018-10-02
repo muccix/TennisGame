@@ -15,10 +15,10 @@ namespace TennisGame
                             IGameScoreManager gameScoreManager,
                             IUserInterface userInterface,
                             Player playerA,
-                            Player _playerB)
+                            Player playerB)
         {
             _playerA = playerA ?? throw new ArgumentNullException("playerA");
-            this._playerB = _playerB ?? throw new ArgumentNullException("playerB");
+            _playerB = playerB ?? throw new ArgumentNullException("playerB");
             _pointResultEngine = pointResultEngine ?? throw new ArgumentNullException("pointResultEngine");
             _gameScoreManager = gameScoreManager ?? throw new ArgumentNullException("gameScoreManager");
             _userInterface = userInterface ?? throw new ArgumentNullException("userInterface");
